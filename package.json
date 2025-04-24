@@ -21,6 +21,7 @@
   ],
   "author": "egreco12",
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.8",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
