@@ -1,14 +1,8 @@
 import { InteractionResponseType } from "discord-interactions";
-
-export interface CreateTeeTimeCommandPayload {
-  GolfCourse: string,
-  DateAndTime: string,
-  Slots: number,
-  Owner: string
-}
+import { TeeTime } from "./models/tee_time";
 
 // TODO: we need a datastore
-export async function createTeeTimeCommand(payload: CreateTeeTimeCommandPayload, res: any){
+export async function createTeeTimeCommand(payload: TeeTime, res: any){
   return res.send({
   type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
   data: {

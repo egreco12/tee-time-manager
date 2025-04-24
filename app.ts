@@ -10,7 +10,8 @@ import {
 } from 'discord-interactions';
 
 import {testCommand} from './src/test_command';
-import {createTeeTimeCommand, CreateTeeTimeCommandPayload} from './src/create_tee_time_command';
+import {createTeeTimeCommand} from './src/create_tee_time_command';
+import {TeeTime} from './src/models/tee_time';
 
 const app: Application = express();
 const PORT = process.env.PORT || '3000';
@@ -34,7 +35,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY!!), async (
       case 'test':
         return testCommand(res);
       case 'create-tee-time':
-        const payload: CreateTeeTimeCommandPayload = {
+        const payload: TeeTime = {
           GolfCourse: data.options[0].value,
           DateAndTime: data.options[1].value,
           Slots: data.options[2].value,
