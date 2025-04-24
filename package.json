@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "node ./app.js",
+    "dev": "node ./dist/app.js",
     "start": "tsc && npm run dev",
-    "register": "tsc && node ./commands.js"
+    "register": "tsc && node ./dist/commands.js"
   },
   "keywords": [
     "express",
