@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "node ./app.js",
-    "start": "tsc && npm run dev"
+    "start": "tsc && npm run dev",
+    "register": "tsc && node ./commands.js"
   },
   "keywords": [
     "express",
@@ -32,6 +33,7 @@
     "@types/node-fetch": "^2.6.12",
     "cors": "^2.8.5",
     "discord-interactions": "^4.1.1",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "node-fetch": "^3.3.2"
   }
