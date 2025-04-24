@@ -25,6 +25,7 @@
     "@tsconfig/recommended": "^1.0.8",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
+    "@types/mongodb": "^4.0.7",
     "@types/node": "^22.14.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
@@ -35,6 +36,7 @@
     "discord-interactions": "^4.1.1",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mongodb": "^6.16.0",
     "node-fetch": "^3.3.2"
   }
 }
