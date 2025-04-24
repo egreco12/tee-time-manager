@@ -15,13 +15,8 @@ import {createTeeTimeCommand, CreateTeeTimeCommandPayload} from './src/create_te
 const app: Application = express();
 const PORT = process.env.PORT || '3000';
 
-/**
- * Interactions endpoint URL where Discord will send HTTP requests
- * Parse request body and verifies incoming requests using discord-interactions package
- */
 
 app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY!!), async (req, res): Promise<any> => {
-  // Interaction id, type and data
   const { id, type, data } = req.body;
   console.log(JSON.stringify(req.body));
 
@@ -32,10 +27,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY!!), async (
     return res.send({ type: InteractionResponseType.PONG });
   }
 
-  /**
-   * Handle slash command requests
-   * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
-   */
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
 

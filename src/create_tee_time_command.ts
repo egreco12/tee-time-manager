@@ -7,11 +7,11 @@ export interface CreateTeeTimeCommandPayload {
   Owner: string
 }
 
+// TODO: we need a datastore
 export async function createTeeTimeCommand(payload: CreateTeeTimeCommandPayload, res: any){
   return res.send({
   type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
   data: {
-    // Fetches a random emoji to send from a helper function
     content: `
     New tee time created:
     Golf Course: ${payload.GolfCourse}
