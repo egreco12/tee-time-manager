@@ -1,5 +1,6 @@
 // Largely ripped from Discord sample app https://github.com/discord/discord-example-app/blob/main/utils.js
 import 'dotenv/config';
+import {Collection, Db, MongoClient} from 'mongodb';
 
 export async function DiscordRequest(endpoint: string, options: any) {
   // append endpoint to root API URL
@@ -40,4 +41,16 @@ export async function InstallGlobalCommands(appId: string | undefined, commands:
   } catch (err) {
     console.error(err);
   }
+}
+
+// Our only global, I hope
+export const collections: { times?: Collection } = {}
+
+export async function connectToDatabase () {
+  const client: MongoClient = new MongoClient(process.env.DB_CONN_STRING!!);
+  await client.connect();
+  const db: Db = client.db(process.env.DB_NAME);
+  const timesCollection: Collection = db.collection(process.env.TIMES_COLLECTION_NAME!!);
+  collections.times = timesCollection;   
+  console.log(`Successfully connected to database: ${db.databaseName} and collection: ${timesCollection.collectionName}`);
 }
