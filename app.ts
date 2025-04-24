@@ -9,6 +9,9 @@ import {
   verifyKeyMiddleware,
 } from 'discord-interactions';
 
+import {testCommand} from './src/test_command';
+import {createTeeTimeCommand, CreateTeeTimeCommandPayload} from './src/create_tee_time_command';
+
 const app: Application = express();
 const PORT = process.env.PORT || '3000';
 
@@ -20,6 +23,7 @@ const PORT = process.env.PORT || '3000';
 app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY!!), async (req, res): Promise<any> => {
   // Interaction id, type and data
   const { id, type, data } = req.body;
+  console.log(JSON.stringify(req.body));
 
   /**
    * Handle verification requests
@@ -35,16 +39,18 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY!!), async (
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
 
-    // "test" command
-    if (name === 'test') {
-      // Send a message into the channel where command was triggered from
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          // Fetches a random emoji to send from a helper function
-          content: `hello world!`,
-        },
-      });
+    switch (name) {
+      case 'test':
+        return testCommand(res);
+      case 'create-tee-time':
+        const payload: CreateTeeTimeCommandPayload = {
+          GolfCourse: data.options[0].value,
+          DateAndTime: data.options[1].value,
+          Slots: data.options[2].value,
+          Owner: data.options[3].value
+        }
+
+        return createTeeTimeCommand(payload, res);
     }
 
     console.error(`unknown command: ${name}`);
