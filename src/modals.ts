@@ -4,7 +4,6 @@ import { createTeeTime } from './services/tee_times';
 import { TeeTime, validateAndCreateTeeTimeModel } from './models/tee_time';
 
 export async function handleModalResponse(req: any, res: any) {
-  console.log(JSON.stringify(req.body.data));
   const modalId: string = req?.body?.data?.custom_id;
 
   switch (modalId) {
